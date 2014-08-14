@@ -7,8 +7,8 @@ This is an ansible role which installs configures the nodesource apt repository 
 Currently this role supports the following operating systems and releases.
 
 * Ubuntu 
-** precise
-** trusty
+  * precise
+  * trusty
 
 ## Usage
 
