@@ -6,7 +6,7 @@ This is an ansible role which installs configures the nodesource apt repository 
 
 Currently this role supports the following operating systems and releases.
 
-* Ubuntu 
+* Ubuntu
   * precise
   * trusty
 
@@ -24,6 +24,16 @@ Then configure it as follows:
 - hosts: servers
   roles:
      - nodesource.nodejs
+```
+
+## NPM Packages
+
+Add in packages to the npm_packages variable to install npm packages.
+
+```yaml
+npm_packages:
+  - bower
+  - coffee-script
 ```
 
 ## Testing
