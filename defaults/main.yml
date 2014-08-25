@@ -1,5 +1,5 @@
 ---
 # defaults file for nodejs
 
-npm_packages:
+npm_packages: []
   - not_really_a_package
