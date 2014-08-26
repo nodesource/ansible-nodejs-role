@@ -2,20 +2,19 @@
 
 <a href="https://nodesource.com"><img src="https://nodesource.com/assets/logo.svg" height="10%" width="10%"></a>
 
-This is an ansible role which installs configures the nodesource apt repository and installs NodeJS.
+This is an Ansible role which adds the the NodeSource APT repository and installs Node.js.
 
 Currently this role supports the following operating systems and releases.
 
-* Ubuntu 
-  * precise
-  * trusty
+* **Ubuntu 12.04 LTS** (Precise Pangolin)
+* **Ubuntu 14.04 LTS** (Trusty Tahr)
 
 ## Usage
 
-Install the playbook via galaxy.
+Install the playbook via Ansible Galaxy:
 
-```
-ansible-galaxy install nodesource.nodejs
+```text
+$ ansible-galaxy install nodesource.nodejs
 ```
 
 Then configure it as follows:
@@ -23,21 +22,21 @@ Then configure it as follows:
 ```yaml
 - hosts: servers
   roles:
-     - nodesource.nodejs
+     - nodesource.node
 ```
 
 ## Testing
 
-To test this role using docker.
+To test this role using Docker:
 
 ```
-docker build .
+$ docker build .
 ```
 
 ## License
 
 MIT
 
-# Author Information
+# Author
 
 Mark Wolfe <mark@wolfe.id.au>
