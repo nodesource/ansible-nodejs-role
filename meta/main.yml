@@ -5,15 +5,14 @@ galaxy_info:
   company: NodeSource
   license: MIT
   min_ansible_version: 1.2
-
   platforms:
-  - name: Ubuntu
-   versions:
+   - name: Ubuntu
+  versions:
    - precise
    - trusty
   categories:
-  - development
-  - networking
-  - packaging
-  - web
+   - development
+   - networking
+   - packaging
+   - web
 dependencies: []
