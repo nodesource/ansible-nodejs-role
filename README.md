@@ -33,10 +33,10 @@ To test this role using Docker:
 $ docker build .
 ```
 
-## License
-
-MIT
-
-# Author
+## Author
 
 Mark Wolfe <mark@wolfe.id.au>
+
+## License
+
+This code is Copyright (c) 2014 NodeSource and Mark Wolfe and licenced under the MIT licence. All rights not explicitly granted in the MIT license are reserved. See the included LICENSE.md file for more details.
