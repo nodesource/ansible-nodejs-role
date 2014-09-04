@@ -14,7 +14,7 @@ Currently this role supports the following operating systems and releases.
 Install the playbook via Ansible Galaxy:
 
 ```text
-$ ansible-galaxy install nodesource.nodejs
+$ ansible-galaxy install nodesource.node
 ```
 
 Then configure it as follows:
