@@ -1,2 +1,4 @@
 ---
 # defaults file for nodejs
+
+npm_packages: []

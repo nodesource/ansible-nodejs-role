@@ -25,6 +25,16 @@ Then configure it as follows:
      - nodesource.node
 ```
 
+## NPM Packages
+
+Add in packages to the npm_packages variable to install npm packages.
+
+```yaml
+npm_packages:
+  - bower
+  - coffee-script
+```
+
 ## Testing
 
 To test this role using Docker:
