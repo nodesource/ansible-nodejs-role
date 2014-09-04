@@ -1,5 +1,5 @@
 ---
-- name: Test the NodeJS role
+- name: Test the Node.js role
   hosts: all
   sudo: yes
   tasks:
