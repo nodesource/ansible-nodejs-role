@@ -25,6 +25,10 @@ Then configure it as follows:
      - nodesource.node
 ```
 
+## Role Variables
+
+- `nodejs_nodesource_pin_priority`: Pin-Priority of the NodeSource repository (default: `500`).
+
 ## Testing
 
 To test this role using Docker:
