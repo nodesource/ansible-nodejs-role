@@ -1,2 +1,3 @@
 ---
-# defaults file for nodejs
+# Pin-Priority of NodeSource repository
+nodejs_nodesource_pin_priority: 500
