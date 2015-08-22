@@ -26,5 +26,8 @@
     src: etc/apt/preferences.d/deb_nodesource_com_node.pref.2
     dest: /etc/apt/preferences.d/deb_nodesource_com_node.pref
 
+- name: Uninstall existing installations of Node.js
+  apt: name=nodejs state=absent
+
 - name: Install Node.js
   apt: pkg=nodejs={{ nodejs_version }}.* state=installed update_cache=yes
