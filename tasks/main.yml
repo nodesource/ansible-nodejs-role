@@ -27,4 +27,4 @@
     dest: /etc/apt/preferences.d/deb_nodesource_com_node.pref
 
 - name: Install Node.js
-  apt: pkg=nodejs={{ nodejs_version }}.* state=installed update_cache=yes
+  apt: pkg=nodejs state=installed update_cache=yes
