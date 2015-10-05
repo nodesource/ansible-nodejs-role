@@ -2,7 +2,7 @@
 ---
 - name: Check nodejs_version variable
   assert:
-    that: nodejs_version in [ "0.10", "0.12" ]
+    that: nodejs_version in [ "0.10", "0.12", "4.x" ]
 
 - name: Ensure the system can use the HTTPS transport for APT
   stat: path=/usr/lib/apt/methods/https
