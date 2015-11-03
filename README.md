@@ -25,6 +25,7 @@ Then configure it as follows:
 
 ## Role Variables
 
+- `nodejs_version`: Supports 0.10 or 0.12 or 4.x
 - `nodejs_nodesource_pin_priority`: Pin-Priority of the NodeSource repository (default: `500`).
 
 ## Testing
