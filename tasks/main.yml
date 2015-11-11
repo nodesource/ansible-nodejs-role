@@ -16,13 +16,10 @@
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
 
-- name: Check if nodejs_version is 4.x or higher
-  set_fact: debian_repo_version="4.x"
-  when: "{{ nodejs_version | version_compare('4.0', '>=') }}"
-
-- name: Check if nodejs_version is 5.x or higher
-  set_fact: debian_repo_version="5.x"
-  when: "{{ nodejs_version | version_compare('5.0', '>=') }}"
+- name: Check if nodejs_version is 0.x
+  set_fact:
+    debian_repo_version: "{{ nodejs_version }}"
+  when: nodejs_version in nodejs_old_versions
 
 - name: Add NodeSource deb repository
   apt_repository:
