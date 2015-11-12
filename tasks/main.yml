@@ -6,7 +6,7 @@
   register: apt_https_transport
 
 - name: Install HTTPS transport for APT
-  apt: 
+  apt:
     pkg: apt-transport-https
     state: installed
   when: not apt_https_transport.stat.exists
@@ -15,6 +15,11 @@
   apt_key:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
+
+- name: Check if nodejs_version is 0.x
+  set_fact:
+    debian_repo_version: "{{ nodejs_version }}"
+  when: nodejs_version in zero_versions
 
 - name: Add NodeSource deb repository
   apt_repository:

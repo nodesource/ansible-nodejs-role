@@ -14,6 +14,18 @@ Install the playbook via Ansible Galaxy:
 ```text
 $ ansible-galaxy install nodesource.node
 ```
+Or using the `requirements.yml`
+
+```yaml
+# install the role from galaxy
+- src: nodesource.node
+```
+
+Which is imported as follows.
+
+```
+ansible-galaxy install -r requirements.yml
+```
 
 Then configure it as follows:
 
@@ -26,6 +38,7 @@ Then configure it as follows:
 ## Role Variables
 
 - `nodejs_nodesource_pin_priority`: Pin-Priority of the NodeSource repository (default: `500`).
+- `nodejs_version`: Supports 0.10 or 0.12 and 4.x, 5.x and onward, replacing x with your desired minor version.
 
 ## Testing
 
