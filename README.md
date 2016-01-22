@@ -6,6 +6,8 @@ Currently this role supports the following operating systems and releases.
 
 * **Ubuntu 12.04 LTS** (Precise Pangolin)
 * **Ubuntu 14.04 LTS** (Trusty Tahr)
+* **Debian 8.0** (Jessie)
+* **Debian next stable** (Stretch)
 
 ## Usage
 
