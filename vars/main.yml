@@ -1,4 +1,4 @@
 ---
 # vars file for nodejs
 zero_versions: ['0.10', '0.12']
-debian_repo_version: '{{ nodejs_version | regex_replace("^([1-9]+)\.\d+$", "\\1.x") }}'
+debian_repo_version: '{{ nodejs_version | regex_replace("^([1-9]+)\.\d+$", "\1.x") }}'
