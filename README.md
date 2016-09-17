@@ -4,16 +4,30 @@ This is an Ansible role which adds the the NodeSource APT repository and install
 
 Currently this role supports the following operating systems and releases.
 
-* **Ubuntu 12.04 LTS** (Precise Pangolin)
 * **Ubuntu 14.04 LTS** (Trusty Tahr)
+* **Ubuntu 16.04 LTS** (Xenial Xerus)
 
 ## Usage
 
-Install the playbook via Ansible Galaxy:
+You can either:
+
+* Install the playbook via Ansible Galaxy:
 
 ```text
 $ ansible-galaxy install nodesource.node
 ```
+
+* Install the using [requirements.yml via Ansible Galaxy](http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file):
+
+```yml
+- src: https://github.com/nodesource/ansible-nodejs-role
+```
+
+```text
+$ ansible-galaxy install -r requirements.txt
+```
+
+## Configure
 
 Then configure it as follows:
 
@@ -26,14 +40,15 @@ Then configure it as follows:
 ## Role Variables
 
 - `nodejs_nodesource_pin_priority`: Pin-Priority of the NodeSource repository (default: `500`).
-- `nodejs_version`: Set Node version (options: `0.10` or `0.12` or `4.4`, default: `4.4`)
+- `nodejs_version`: Set Node version (options: `0.10` or `0.12` or `4.6`, default: `4.6`)
 
 ## Testing
 
-To test this role using Docker:
+To test this role using [molecule](https://github.com/metacloud/molecule):
 
 ```
-$ docker build .
+$ make
+$ molecule test
 ```
 
 ## Author
