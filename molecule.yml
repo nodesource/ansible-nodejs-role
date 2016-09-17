@@ -1,0 +1,22 @@
+---
+molecule:
+  ignore_paths:
+    - .git
+    - .vagrant
+    - .molecule
+    - venv
+
+ansible:
+  playbook: playbook.yml
+
+docker:
+  containers:
+  - name: ansible-nodejs-01
+    image: ubuntu
+    image_version: xenial
+  - name: ansible-nodejs-02
+    image: ubuntu
+    image_version: trusty
+
+verifier:
+  name: testinfra

@@ -1,0 +1,6 @@
+/venv
+*.retry
+.molecule
+.vagrant
+/tests/__pycache__
+.cache

@@ -35,6 +35,6 @@
 - name: Install Node.js
   apt:
     pkg:
-      - nodejs={{ nodejs_version }}*
+      - nodejs
     state: installed
     update_cache: yes
