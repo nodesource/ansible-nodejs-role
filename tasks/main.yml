@@ -11,10 +11,15 @@
     state: installed
   when: not apt_https_transport.stat.exists
 
+- name: Get content of GPG key
+  uri:
+    url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+    return_content: yes
+  register: nodesource_gpg
+
 - name: Import the NodeSource GPG key into apt
   apt_key:
-    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
-    id: "68576280"
+    data: '{{ nodesource_gpg.content }}'
     state: present
 
 - name: Add NodeSource deb repository
