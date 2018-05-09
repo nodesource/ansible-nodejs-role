@@ -11,6 +11,11 @@
     state: installed
   when: not apt_https_transport.stat.exists
 
+- name: Install GPG
+  apt:
+    pkg: gnupg
+    state: installed
+
 - name: Import the NodeSource GPG key into apt
   apt_key:
     url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
