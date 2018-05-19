@@ -8,13 +8,13 @@
 - name: Install HTTPS transport for APT
   apt:
     pkg: apt-transport-https
-    state: installed
+    state: present
   when: not apt_https_transport.stat.exists
 
 - name: Install GPG
   apt:
     pkg: gnupg
-    state: installed
+    state: present
 
 - name: Import the NodeSource GPG key into apt
   apt_key:
@@ -41,5 +41,5 @@
   apt:
     pkg:
       - nodejs
-    state: installed
+    state: present
     update_cache: yes
