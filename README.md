@@ -17,10 +17,10 @@ You can either:
 $ ansible-galaxy install nodesource.node
 ```
 
-* Install the using [requirements.yml via Ansible Galaxy](http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file):
+* Install the playbook using [requirements.yml via Ansible Galaxy](http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file):
 
 ```yml
-- src: https://github.com/nodesource/ansible-nodejs-role
+- src: nodesource.node
 ```
 
 ```text
