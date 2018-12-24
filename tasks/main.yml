@@ -36,10 +36,14 @@
   template:
     src: etc/apt/preferences.d/deb_nodesource_com_node.pref.2
     dest: /etc/apt/preferences.d/deb_nodesource_com_node.pref
-
+    
+- name: Update apt cache (if the last one is more than 3600 seconds ago)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    
 - name: Install Node.js
   apt:
     pkg:
       - nodejs
     state: installed
-    update_cache: yes
