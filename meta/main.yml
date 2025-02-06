@@ -1,18 +1,45 @@
 ---
 galaxy_info:
-  author: Mark Wolfe
+  author: NodeSource
+  namespace: nodesource
+  role_name: ansible_nodejs_role
   description: Installs the NodeSource Node.js binary packages
   company: NodeSource
   license: MIT
-  min_ansible_version: 1.2
+  min_ansible_version: "2.16"
   platforms:
-   - name: Ubuntu
-     versions:
-       - precise
-       - trusty
-  categories:
-   - development
-   - networking
-   - packaging
-   - web
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+        - bookworm
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+        - "10"
+    - name: Fedora
+      versions:
+        - "39"
+        - "40"
+        - "41"
+    - name: GenericLinux
+      versions:
+        - all
+categories:
+  - development
+  - networking
+  - packaging
+  - web
+  - system
+  - infrastructure
+  - performance
+  - security
+  - databases
+  - cloud
 dependencies: []

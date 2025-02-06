@@ -1,8 +1,9 @@
 ---
-- name: Test the Node.js role
-  hosts: all
+- name: Install Node.js using ansible-nodejs-role
+  hosts: localhost
+  connection: local
   become: yes
   roles:
-    - role: "ansible-nodejs-role"
+    - role: ansible-nodejs-role
   vars:
-    nodejs_version: '4'
+    nodejs_version: "18.x"
