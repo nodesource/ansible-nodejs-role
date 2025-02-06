@@ -1,6 +1,12 @@
 ---
-# Pin-Priority of NodeSource repository
-nodejs_nodesource_pin_priority: 500
+# Default Node.js version (can be overridden)
+nodejs_version: "22.x"
 
-# 0.10 or 0.12 or 4.x
-nodejs_version: "4.6"
+# Pin-Priority of NodeSource repository
+nodejs_nodesource_pin_priority: 600
+
+# List of supported Node.js versions
+nodejs_supported_versions:
+  - "18.x"
+  - "20.x"
+  - "22.x"
