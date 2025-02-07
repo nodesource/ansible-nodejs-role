@@ -20,23 +20,39 @@
     state: directory
     mode: "0755"
 
-- name: Remove old NodeSource GPG key (if exists)
-  ansible.builtin.file:
-    path: /usr/share/keyrings/nodesource.gpg
+- name: Uninstall existing Node.js and clean dependencies
+  ansible.builtin.apt:
+    name: nodejs
     state: absent
+    autoremove: yes
+  register: node_uninstall
+  changed_when: node_uninstall.changed
 
-- name: Remove old NodeSource repository list (if exists)
+- name: Remove old NodeSource files (if exist)
   ansible.builtin.file:
-    path: /etc/apt/sources.list.d/nodesource.list
+    path: "{{ item }}"
     state: absent
+  loop:
+    - /usr/share/keyrings/nodesource.gpg
+    - /etc/apt/sources.list.d/nodesource.list
+    - /etc/apt/preferences.d/nodejs
 
-- name: Download and import NodeSource GPG key
+- name: Download NodeSource GPG key
   ansible.builtin.get_url:
     url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
-    dest: /usr/share/keyrings/nodesource.gpg
+    dest: /tmp/nodesource-repo.gpg
     mode: "0644"
-  register: gpg_download
-  failed_when: gpg_download.failed
+
+- name: Convert GPG key to binary format and store in keyrings
+  ansible.builtin.command:
+    cmd: gpg --dearmor -o /usr/share/keyrings/nodesource.gpg /tmp/nodesource-repo.gpg
+    creates: /usr/share/keyrings/nodesource.gpg
+  become: yes
+
+- name: Set correct permissions for the GPG key
+  ansible.builtin.file:
+    path: /usr/share/keyrings/nodesource.gpg
+    mode: "0644"
 
 - name: Detect system architecture
   ansible.builtin.command: dpkg --print-architecture
@@ -69,3 +85,16 @@
   ansible.builtin.apt:
     pkg: nodejs
     state: present
+
+- name: Verify Node.js installation
+  ansible.builtin.command:
+    cmd: node -v
+  register: node_version_output
+  changed_when: false
+
+- name: Validate installed Node.js version
+  ansible.builtin.assert:
+    that:
+      - "node_version_output.stdout is search(nodejs_version | regex_replace('x', ''))"
+    success_msg: "Node.js is correctly installed with version {{ node_version_output.stdout }}"
+    fail_msg: "Expected Node.js {{ nodejs_version }}, but found {{ node_version_output.stdout }}"
