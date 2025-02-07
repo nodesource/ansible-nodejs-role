@@ -1,3 +1,2 @@
 ---
-# Node.js version (override if needed)
-nodejs_version: "22.x"
+# vars file for nodejs

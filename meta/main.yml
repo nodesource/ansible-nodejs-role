@@ -2,7 +2,7 @@
 galaxy_info:
   author: NodeSource
   namespace: nodesource
-  role_name: ansible_nodejs_role
+  role_name: ansible-nodejs-role
   description: Installs the NodeSource Node.js binary packages
   company: NodeSource
   license: MIT
@@ -31,15 +31,15 @@ galaxy_info:
     - name: GenericLinux
       versions:
         - all
-categories:
-  - development
-  - networking
-  - packaging
-  - web
-  - system
-  - infrastructure
-  - performance
-  - security
-  - databases
-  - cloud
+  categories:
+    - development
+    - networking
+    - packaging
+    - web
+    - system
+    - infrastructure
+    - performance
+    - security
+    - databases
+    - cloud
 dependencies: []
