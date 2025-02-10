@@ -1,0 +1,161 @@
+name: Ansible Playbook Execution
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  run-playbook-ubuntu-amd64:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ubuntu_version: [noble, jammy, focal]
+        node_version: [18.x, 20.x, 22.x]
+    container:
+      image: ubuntu:${{ matrix.ubuntu_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          apt-get update
+          apt-get install -y lsb-release sudo curl python3 python3-pip python3-venv
+      - name: Setup Virtual Environment
+        run: |
+          python3 -m venv venv
+          ./venv/bin/pip install --upgrade pip
+      - name: Install Ansible and Requirements
+        run: |
+          ./venv/bin/pip install -r requirements.txt
+          ./venv/bin/pip install ansible
+      - name: Run Playbook
+        run: |
+          ANSIBLE_ROLES_PATH=../ ./venv/bin/ansible-playbook playbook.yml --extra-vars "nodejs_version=${{ matrix.node_version }}" --ask-become-pass
+      - name: Check Installed Node.js Version
+        shell: bash
+        run: |
+          NODE_VERSION_INSTALLED=$(node -v | cut -d. -f1 | sed 's/v//')
+          NODE_VERSION_EXPECTED=$(echo "${{ matrix.node_version }}" | cut -d. -f1)
+          if [[ "$NODE_VERSION_INSTALLED" != "$NODE_VERSION_EXPECTED" ]]; then
+            echo "Node.js version mismatch: expected $NODE_VERSION_EXPECTED, got $NODE_VERSION_INSTALLED"
+            exit 1
+          else
+            echo "Node.js version correctly installed: $NODE_VERSION_INSTALLED"
+          fi
+
+  run-playbook-debian-amd64:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        debian_version: [bullseye, bookworm]
+        node_version: [18.x, 20.x, 22.x]
+    container:
+      image: debian:${{ matrix.debian_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          apt-get update
+          apt-get install -y lsb-release sudo curl python3 python3-pip python3-venv
+      - name: Setup Virtual Environment
+        run: |
+          python3 -m venv venv
+          ./venv/bin/pip install --upgrade pip
+      - name: Install Ansible and Requirements
+        run: |
+          ./venv/bin/pip install -r requirements.txt
+          ./venv/bin/pip install ansible
+      - name: Run Playbook
+        run: |
+          ANSIBLE_ROLES_PATH=../ ./venv/bin/ansible-playbook playbook.yml --extra-vars "nodejs_version=${{ matrix.node_version }}" --ask-become-pass
+      - name: Check Installed Node.js Version
+        shell: bash
+        run: |
+          NODE_VERSION_INSTALLED=$(node -v | cut -d. -f1 | sed 's/v//')
+          NODE_VERSION_EXPECTED=$(echo "${{ matrix.node_version }}" | cut -d. -f1)
+          if [[ "$NODE_VERSION_INSTALLED" != "$NODE_VERSION_EXPECTED" ]]; then
+            echo "Node.js version mismatch: expected $NODE_VERSION_EXPECTED, got $NODE_VERSION_INSTALLED"
+            exit 1
+          else
+            echo "Node.js version correctly installed: $NODE_VERSION_INSTALLED"
+          fi
+
+  run-playbook-ubuntu-arm64:
+    runs-on: ubuntu-22.04-arm
+    strategy:
+      matrix:
+        ubuntu_version: [noble, jammy, focal]
+        node_version: [18.x, 20.x, 22.x]
+    container:
+      image: ubuntu:${{ matrix.ubuntu_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          apt-get update
+          apt-get install -y lsb-release sudo curl python3 python3-pip python3-venv
+      - name: Setup Virtual Environment
+        run: |
+          python3 -m venv venv
+          ./venv/bin/pip install --upgrade pip
+      - name: Install Ansible and Requirements
+        run: |
+          ./venv/bin/pip install -r requirements.txt
+          ./venv/bin/pip install ansible
+      - name: Run Playbook
+        run: |
+          ANSIBLE_ROLES_PATH=../ ./venv/bin/ansible-playbook playbook.yml --extra-vars "nodejs_version=${{ matrix.node_version }}" --ask-become-pass
+      - name: Check Installed Node.js Version
+        shell: bash
+        run: |
+          NODE_VERSION_INSTALLED=$(node -v | cut -d. -f1 | sed 's/v//')
+          NODE_VERSION_EXPECTED=$(echo "${{ matrix.node_version }}" | cut -d. -f1)
+          if [[ "$NODE_VERSION_INSTALLED" != "$NODE_VERSION_EXPECTED" ]]; then
+            echo "Node.js version mismatch: expected $NODE_VERSION_EXPECTED, got $NODE_VERSION_INSTALLED"
+            exit 1
+          else
+            echo "Node.js version correctly installed: $NODE_VERSION_INSTALLED"
+          fi
+
+  run-playbook-debian-arm64:
+    runs-on: ubuntu-22.04-arm
+    strategy:
+      matrix:
+        debian_version: [bullseye, bookworm]
+        node_version: [18.x, 20.x, 22.x]
+    container:
+      image: debian:${{ matrix.debian_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          apt-get update
+          apt-get install -y lsb-release sudo curl python3 python3-pip python3-venv
+      - name: Setup Virtual Environment
+        run: |
+          python3 -m venv venv
+          ./venv/bin/pip install --upgrade pip
+      - name: Install Ansible and Requirements
+        run: |
+          ./venv/bin/pip install -r requirements.txt
+          ./venv/bin/pip install ansible
+      - name: Run Playbook
+        run: |
+          ANSIBLE_ROLES_PATH=../ ./venv/bin/ansible-playbook playbook.yml --extra-vars "nodejs_version=${{ matrix.node_version }}" --ask-become-pass
+      - name: Check Installed Node.js Version
+        shell: bash
+        run: |
+          NODE_VERSION_INSTALLED=$(node -v | cut -d. -f1 | sed 's/v//')
+          NODE_VERSION_EXPECTED=$(echo "${{ matrix.node_version }}" | cut -d. -f1)
+          if [[ "$NODE_VERSION_INSTALLED" != "$NODE_VERSION_EXPECTED" ]]; then
+            echo "Node.js version mismatch: expected $NODE_VERSION_EXPECTED, got $NODE_VERSION_INSTALLED"
+            exit 1
+          else
+            echo "Node.js version correctly installed: $NODE_VERSION_INSTALLED"
+          fi
