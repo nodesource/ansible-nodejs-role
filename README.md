@@ -9,7 +9,6 @@ Currently, this role supports the following operating systems and releases:
 - **Ubuntu 20.04 LTS** (Focal Fossa)
 - **Ubuntu 22.04 LTS** (Jammy Jellyfish)
 - **Ubuntu 24.04 LTS** (Noble Numbat)
-- **Debian 10** (Buster)
 - **Debian 11** (Bullseye)
 - **Debian 12** (Bookworm)
 
@@ -22,8 +21,6 @@ To install and test this role locally, run:
 ```sh
 ANSIBLE_ROLES_PATH=../ ansible-playbook playbook.yml --ask-become-pass
 ```
-
-````
 
 ### Install via Ansible Galaxy
 
@@ -72,5 +69,3 @@ Maintained by NodeSource.
 ## License
 
 This code is licensed under the MIT License. See the included [LICENSE.md](./LICENSE.md) file for more details.
-
-````
